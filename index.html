@@ -32,16 +32,17 @@
             text-align: center;
             background: linear-gradient(135deg, #2c3e50, #4ca1af);
             color: white;
-            padding: 20px 15px;
+            padding: 15px 10px;
             border-radius: 12px;
             margin-bottom: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         header h1 {
-            font-size: 1.4rem;
+            font-size: 1.15rem;
             margin: 0;
             letter-spacing: 0.5px;
+            font-weight: 600;
         }
 
         .tabs {
@@ -79,7 +80,7 @@
 
         .section-title {
             text-align: center;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: bold;
             color: #2c3e50;
             margin-bottom: 20px;
@@ -264,7 +265,7 @@
 
         <div class="date-header">15-10-2026</div>
         <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၀</span><span class="donor-name">မသဥ္ဇာဝင်း မိသားစု ပုလောမြို့နယ် (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
+            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၀</span><span class="donor-name">မသဥ္စာဝင်း မိသားစု ပုလောမြို့နယ် (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
         </div>
 
         <div class="total-box" id="kathin-total">ကထိန်အလှူငွေစုစုပေါင်း - 0/- ကျပ်</div>
@@ -296,7 +297,7 @@
         <div class="donor-list">
             <div class="donor-card"><div class="donor-info"><span class="donor-no">၇</span><span class="donor-name">ထူးလင်းယံမိသားစု စမ်းချောင်း (Kpay)</span></div><div class="donor-amount" data-value="200000">200,000/-</div></div>
             <div class="donor-card"><div class="donor-info"><span class="donor-no">၈</span><span class="donor-name">ဒေါ်ယုယုခိုင်၊ မအိမ့်ကြည်စင် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၉</span><span class="donor-name">ကိုလွမ်းမိုးအောင် + မနော်မူး (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
+            <div class="donor-card"><div class="donor-info"><span class="donor-no">၉</span><span class="donor-name">ကိုလွှမ်းမိုးအောင် + မနော်မူး (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
         </div>
 
         <div class="date-header">10-10-2026</div>
@@ -329,7 +330,12 @@
             <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၉</span><span class="donor-name">ကိုသန့်ဇော်လင်း + မဝေမာ မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
             <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၀</span><span class="donor-name">ဒေါ်ကျော့ကျော့ခိုင် (ထပ်တိုးအလှူ) (Kpay)</span></div><div class="donor-amount" data-value="200000">200,000/-</div></div>
             <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၁</span><span class="donor-name">ကိုထွန်းဝေ + မမေလွင်သော် ထွန်းပြည့်လျှံဆောက်လုပ်ရေး ကုမ္ပဏီ (ထပ်တိုးအလှူ)</span></div><div class="donor-amount" data-value="300000">300,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၂</span><span class="donor-name">မသဥ္ဇာဝင်း မိသားစု ပုလောမြို့နယ် (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
+            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၂</span><span class="donor-name">မသဥ္စာဝင်း မိသားစု ပုလောမြို့နယ် (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
+        </div>
+
+        <div class="date-header">16-10-2026</div>
+        <div class="donor-list">
+            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၃</span><span class="donor-name">ဦးကျော်စွာလင်း + ဒေါ်ပပဝင်း သား မောင်လင်းပြည့်ရဲရင့်၊ သမီး မခင်လင်းရတနာသွယ်၊ သမီး မထက်ရတီလင်း မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
         </div>
 
         <div class="total-box" id="flood-total">ရေဘေးအလှူငွေစုစုပေါင်း - 0/- ကျပ်</div>
@@ -347,14 +353,14 @@
     }
 
     function calculateTotals() {
-        // Calculate Kathin Total
+        // Calculate Kathin Total strictly within #kathin section
         let kathinSum = 0;
         document.querySelectorAll('#kathin .donor-amount').forEach(el => {
             kathinSum += Number(el.getAttribute('data-value')) || 0;
         });
         document.getElementById('kathin-total').innerText = `ကထိန်အလှူငွေစုစုပေါင်း - ${kathinSum.toLocaleString()} ကျပ်`;
 
-        // Calculate Flood Total
+        // Calculate Flood Total strictly within #flood section
         let floodSum = 0;
         document.querySelectorAll('#flood .donor-amount').forEach(el => {
             floodSum += Number(el.getAttribute('data-value')) || 0;
@@ -368,3 +374,4 @@
 
 </body>
 </html>
+```[cite: 3]
