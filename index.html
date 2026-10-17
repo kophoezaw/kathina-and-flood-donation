@@ -239,7 +239,7 @@
         <div class="donor-list">
             <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၂</span><span class="donor-name">ဒေါ်ချိုချိုအောင် ၊ ဒေါ်မီမီအောင် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
             <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၃</span><span class="donor-name">ဒေါ်ယုယုခိုင်၊ မအိမ့်ကြည်စင် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၄</span><span class="donor-name">ကိုလွှမ်းမိုးအောင် + မနော်မူး (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
+            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၄</span><span class="donor-name">ကိုလွမ်းမိုးအောင် + မနော်မူး (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
         </div>
 
         <div class="date-header">10-10-2026</div>
@@ -339,9 +339,10 @@
             <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၄</span><span class="donor-name">ဦးအောင်ချိုထက် (UK) (Kpay)</span></div><div class="donor-amount" data-value="1000000">1,000,000/-</div></div>
             <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၅</span><span class="donor-name">ဦးခင်မောင်ဌေး + ဒေါ်အေးမြတ်မွန် သမီး သစ္စာရည်မွန်ဌေး မိသားစု (UK) (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
             <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၆</span><span class="donor-name">ဦးမင်းခိုင် + ဒေါ်ချိုသက်ရီ သား မောင်ထက်အောင်လင်း မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၇</span><span class="donor-name">ကွယ်လွန်သူ မိဘနှစ်ပါး ဦးခင်မောင်ဘို + ဒေါ်မြမြချစ် တို့အား ရည်စူး၍ သမီး မြဝတ်ရည်ဘို (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
+            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၇</span><span class="donor-name">ကွယ်လွန်သူ မိဘနှစ်ပါး ဦးခင်မောင်ဘို + ဒေါ်မြမြချစ် တို့အားရည်စူး၍ သမီး မြဝတ်ရည်ဘို (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
             <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၈</span><span class="donor-name">မကေသွယ်ခိုင် မွေးနေ့အလှူ (Kpay)</span></div><div class="donor-amount" data-value="300000">300,000/-</div></div>
             <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၉</span><span class="donor-name">မအေးမို့မို့ဝင်း (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
+            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၀</span><span class="donor-name">ဒေါ်နုနုခိုင်နှင့်သမီး မကျော့ မိသားစု (ထပ်တိုးအလှူ) (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
         </div>
 
         <div class="total-box" id="flood-total">ရေဘေးအလှူငွေစုစုပေါင်း - 0/- ကျပ်</div>
@@ -359,12 +360,14 @@
     }
 
     function calculateTotals() {
+        // Calculate Kathin Total strictly within #kathin section
         let kathinSum = 0;
         document.querySelectorAll('#kathin .donor-amount').forEach(el => {
             kathinSum += Number(el.getAttribute('data-value')) || 0;
         });
         document.getElementById('kathin-total').innerText = `ကထိန်အလှူငွေစုစုပေါင်း - ${kathinSum.toLocaleString()} ကျပ်`;
 
+        // Calculate Flood Total strictly within #flood section
         let floodSum = 0;
         document.querySelectorAll('#flood .donor-amount').forEach(el => {
             floodSum += Number(el.getAttribute('data-value')) || 0;
@@ -372,6 +375,7 @@
         document.getElementById('flood-total').innerText = `ရေဘေးအလှူငွေစုစုပေါင်း - ${floodSum.toLocaleString()} ကျပ်`;
     }
 
+    // Run calculation on page load
     window.onload = calculateTotals;
 </script>
 
