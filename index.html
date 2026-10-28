@@ -3,477 +3,670 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNF ပြည်တွင်းပြည်ပသာသနာပြုအဖွဲ့ အလှူငွေစာရင်းများ</title>
+    <title>SNF YGN သာသနာပြုအဖွဲ့ အလှူငွေစာရင်းများ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #b8860b;
-            --secondary-color: #d4af37;
-            --bg-color: #fcfbfa;
+            --primary-blue: #1e3a8a;
+            --primary-red: #8b0000;
+            --accent-gold: #d97706;
+            --bg-color: #f1f5f9;
             --card-bg: #ffffff;
-            --text-color: #333333;
-            --border-color: #e6dfd5;
+            --text-color: #334155;
+            --border-color: #e2e8f0;
         }
-
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body {
-            font-family: 'Pyidaungsu', 'Myanmar Text', sans-serif;
+            font-family: 'Padauk', 'Pyidaungsu', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            margin: 0;
-            padding: 15px;
-            line-height: 1.6;
+            line-height: 1.7;
+            padding: 12px;
         }
-
         .container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            padding: 20px;
+            border: 1px solid var(--border-color);
         }
 
-        header {
+        /* Top Title */
+        .org-header {
             text-align: center;
-            background: linear-gradient(135deg, #2c3e50, #4ca1af);
-            color: white;
-            padding: 15px 10px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed var(--border-color);
+        }
+        .org-header h2 {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            font-weight: 700;
         }
 
-        header h1 {
-            font-size: 1.15rem;
-            margin: 0;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-        }
-
-        .tabs {
+        /* Navigation Tabs */
+        .tab-buttons {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 8px;
+            margin-bottom: 20px;
+            background-color: #e2e8f0;
+            padding: 5px;
+            border-radius: 12px;
         }
-
         .tab-btn {
-            background-color: #e2dcd2;
+            flex: 1;
+            padding: 12px 8px;
             border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 8px;
+            background: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #64748b;
             cursor: pointer;
+            border-radius: 8px;
             transition: all 0.3s ease;
-            color: #555;
+            text-align: center;
+        }
+        .tab-btn.active-flood {
+            background-color: var(--primary-blue);
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(30, 58, 138, 0.25);
+        }
+        .tab-btn.active-kathina {
+            background-color: var(--primary-red);
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(139, 0, 0, 0.25);
         }
 
-        .tab-btn.active {
-            background-color: var(--primary-color);
-            color: white;
-            box-shadow: 0 4px 8px rgba(184, 134, 11, 0.3);
-        }
-
+        /* Tab Content Containers */
         .tab-content {
             display: none;
+            animation: fadeIn 0.4s ease-in-out;
         }
-
         .tab-content.active {
             display: block;
         }
 
-        .section-title {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Headers */
+        .main-header {
             text-align: center;
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #2c3e50;
+            padding: 18px 15px;
+            color: #ffffff;
+            border-radius: 12px;
             margin-bottom: 20px;
-            padding: 10px;
-            background-color: #eae6df;
+        }
+        .header-flood {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+        .header-kathina {
+            background: linear-gradient(135deg, #8b0000 0%, #b8860b 100%);
+        }
+        .main-header h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        /* Image Styling */
+        .image-container {
+            width: 100%;
+            margin-bottom: 20px;
+            text-align: center;
+            background: #f8fafc;
+            padding: 8px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
             border-radius: 8px;
         }
 
-        .date-header {
-            font-size: 1rem;
+        /* Date Section & Donor Items */
+        .date-section {
+            margin-bottom: 15px;
+        }
+        .date-title {
             font-weight: bold;
-            color: var(--primary-color);
-            margin: 20px 0 10px 0;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 4px;
+            padding: 4px 12px;
+            border-radius: 6px;
+            margin: 15px 0 8px 0;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+        .date-title-flood {
+            background-color: #eff6ff;
+            color: #1d4ed8;
+            border-left: 4px solid #3b82f6;
+        }
+        .date-title-kathina {
+            background-color: #fef2f2;
+            color: #991b1b;
+            border-left: 4px solid #dc2626;
         }
 
         .donor-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            list-style: none;
         }
-
-        .donor-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 12px 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        .donor-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            gap: 15px;
+            align-items: flex-start;
+            padding: 8px 10px;
+            border-bottom: 1px dashed var(--border-color);
+            font-size: 0.92rem;
+            border-radius: 6px;
         }
-
-        .donor-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .donor-item:hover {
+            background-color: #f8fafc;
+        }
+        .donor-name-col {
             flex: 1;
+            padding-right: 12px;
+            word-break: break-word;
         }
-
-        .donor-no {
-            background-color: var(--secondary-color);
-            color: white;
-            font-size: 0.85rem;
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-weight: bold;
-            min-width: 25px;
-            text-align: center;
-        }
-
-        .donor-name {
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
         .donor-amount {
-            font-size: 0.95rem;
             font-weight: bold;
-            color: #27ae60;
+            color: #0d9488;
             white-space: nowrap;
-            background-color: #e8f8f5;
-            padding: 4px 10px;
-            border-radius: 6px;
+        }
+        .payment-subtext {
+            display: inline-block;
+            margin-top: 3px;
+            font-size: 0.75rem;
+            color: #475569;
+            background-color: #f1f5f9;
+            padding: 1px 6px;
+            border-radius: 4px;
+            border: 1px solid #cbd5e1;
         }
 
+        /* Total Boxes */
         .total-box {
-            background: linear-gradient(135deg, #d4af37, #b8860b);
-            color: white;
-            text-align: center;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
             margin-top: 25px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            color: #ffffff;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.15rem;
+            font-weight: bold;
+        }
+        .total-flood {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        .total-kathina {
+            background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%);
+        }
+        .total-amount {
+            color: #facc15;
+            font-size: 1.25rem;
+        }
+
+        /* Blessing Box */
+        .blessing-box {
+            margin-top: 20px;
+            padding: 18px;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fde68a;
+            border-radius: 12px;
+            text-align: center;
+            color: #78350f;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 5px; }
+            .container { padding: 12px; border-radius: 12px; }
+            .tab-btn { font-size: 0.85rem; padding: 10px 4px; }
+            .main-header h1 { font-size: 1.1rem; }
+            .donor-item { font-size: 0.88rem; padding: 8px 4px; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <header>
-        <h1>SNF ပြည်တွင်းပြည်ပသာသနာပြုအဖွဲ့</h1>
-    </header>
-
-    <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('kathin')">ကထိန်အလှူစာရင်း</button>
-        <button class="tab-btn" onclick="switchTab('flood')">ရေဘေးအလှူစာရင်း</button>
+    <div class="org-header">
+        <h2>SNF YGN သာသနာပြုအဖွဲ့</h2>
     </div>
 
-    <!-- ကထိန် Tab -->
-    <div id="kathin" class="tab-content active">
-        <div class="section-title">၂၀၂၆ခုနှစ် ပဲခူး ကျိုက်ဒေးကစီကျောင်းတိုက် စုပေါင်းမဟာဘုံကထိန်ပွဲအလှူ</div>
-        
-        <div class="date-header">27-9-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁</span><span class="donor-name">ကိုကျော်စွာ + မတင်တင်နွယ် မိသားစု- နေပြည်တော် (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂</span><span class="donor-name">ကိုသန့်ဇော်လင်း + မဝေမာ သားမောင်သက်ပိုင်လင်း၊ သမီး မစံယွန်းမေ မိသားစု- ရန်ကုန်မြို့ (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃</span><span class="donor-name">မသိမ့်သဥ္စာစိုး (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄</span><span class="donor-name">မကေသွယ်ခိုင် (Kpay)</span></div><div class="donor-amount" data-value="110000">110,000/-</div></div>
-        </div>
-
-        <div class="date-header">28-9-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၅</span><span class="donor-name">ဒေါ်စုစုအောင် (KBZ Mobile Banking)</span></div><div class="donor-amount" data-value="3000000">3,000,000/-</div></div>
-        </div>
-
-        <div class="date-header">30-9-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၆</span><span class="donor-name">ကိုစခိုင်မင်းဦး+မဖြူဖြူဝင်း၊သမီးမဖြူဖြူခိုင်မင်း၊သားမောင်လရောင်လင်း မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="40000">40,000/-</div></div>
-        </div>
-
-        <div class="date-header">1-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၇</span><span class="donor-name">မိခင်ကြီးဒေါ်သန်းအားအမှူးထား၍ မစိန်စိန်မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၈</span><span class="donor-name">ဒေါ်မို့မို့ (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၉</span><span class="donor-name">မအင်ကြင်း (Kpay)</span></div><div class="donor-amount" data-value="300000">300,000/-</div></div>
-        </div>
-
-        <div class="date-header">2-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၀</span><span class="donor-name">ထူးလင်းယံ မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="300000">300,000/-</div></div>
-        </div>
-
-        <div class="date-header">4-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၁</span><span class="donor-name">မဧပရယ်ဌေး (Cash)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၂</span><span class="donor-name">မကျော့ကျော့ခိုင် (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-        </div>
-
-        <div class="date-header">5-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၃</span><span class="donor-name">ကိုသန်းဇော်ဦး + မမြင့်ကေခိုင်မိသားစု (Cash)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၄</span><span class="donor-name">မချောစုလှိုင် (Kpay)</span></div><div class="donor-amount" data-value="20000">20,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၅</span><span class="donor-name">မမြမြမိုး (Kpay)</span></div><div class="donor-amount" data-value="30000">30,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၆</span><span class="donor-name">မသီသီလှိုင် (Cash)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၇</span><span class="donor-name">ဦးတင်အေး မိသားစု (Cash)</span></div><div class="donor-amount" data-value="20000">20,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၈</span><span class="donor-name">ဒေါ်မြင့်မြင့်ဝေ၊ ဒေါ်လှလှဝင်း မိသားစု မြစ်ကြီးနားမြို့ (ယောဂီဟောင်း) (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-        </div>
-
-        <div class="date-header">6-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၉</span><span class="donor-name">မယမင်းဖြိုးအိ (Kpay)</span></div><div class="donor-amount" data-value="30000">30,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၀</span><span class="donor-name">မဆွေဆွေမြင့် (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-        </div>
-
-        <div class="date-header">8-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၁</span><span class="donor-name">ကိုထွန်းဝေ + မမေလွင်သော် ထွန်းပြည်လျှံ ကုမ္ပဏီ (Kpay)</span></div><div class="donor-amount" data-value="300000">300,000/-</div></div>
-        </div>
-
-        <div class="date-header">9-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၂</span><span class="donor-name">ဒေါ်ချိုချိုအောင် ၊ ဒေါ်မီမီအောင် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၃</span><span class="donor-name">ဒေါ်ယုယုခိုင်၊ မအိမ့်ကြည်စင် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၄</span><span class="donor-name">ကိုလွမ်းမိုးအောင် + မနော်မူး (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-        </div>
-
-        <div class="date-header">10-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၅</span><span class="donor-name">မနန်းသီရိဦး မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၆</span><span class="donor-name">မနှင်းလဲ့ထွန်းမိသားစု (Kpay)</span></div><div class="donor-amount" data-value="500000">500,000/-</div></div>
-        </div>
-
-        <div class="date-header">11-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၇</span><span class="donor-name">(ဦးအောင်ဆန်းဝင်း)+ဒေါ်စန်းယုမော် သား နေမင်းကို၊ ညီလမင်း၊ ကြယ်မင်းမြတ် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="30000">30,000/-</div></div>
-        </div>
-
-        <div class="date-header">12-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၈</span><span class="donor-name">ဖခင်နှင့်မိခင်တို့အား ရည်စူး၍ ဦးသန်းဇော် + ဒေါ်ခင်ပြုံးရည် သားအောင်ကောင်းမြတ်၊ သမီး မဆုရွှေရည်ဝင်း မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="500000">500,000/-</div></div>
-        </div>
-
-        <div class="date-header">13-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၉</span><span class="donor-name">ဒေါ်ကလျာအောင် (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-        </div>
-
-        <div class="date-header">15-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၀</span><span class="donor-name">မသဥ္စာဝင်း မိသားစု ပုလောမြို့နယ် (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-        </div>
-
-        <div class="date-header">17-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၁</span><span class="donor-name">ဦးဝင်းမောင် + ဒေါ်ခင်အေး မိသားစု၊ ပျဉ်းမနားမြို့ (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၂</span><span class="donor-name">ဦးညွန့်ဝင်း + ဒေါ်ရီ မိသားစု၊ ပျဉ်းမနားမြို့ (Kpay)</span></div><div class="donor-amount" data-value="15000">15,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၃</span><span class="donor-name">ဦးရွှေကို + ဒေါ်သီတာဝင်း မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="300000">300,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၄</span><span class="donor-name">ဒေါ်တင်တင်အေး မိသားစု</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၅</span><span class="donor-name">ဒေါ်မိုးသူဇာ မိသားစု</span></div><div class="donor-amount" data-value="10000">10,000/-</div></div>
-        </div>
-
-        <div class="date-header">18-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၆</span><span class="donor-name">ဦးဝင်းကို + ဒေါ်ဝါဝါခိုင် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="30000">30,000/-</div></div>
-        </div>
-
-        <div class="date-header">19-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၇</span><span class="donor-name">ဒေါ်ခင်ထွေးဇင် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-        </div>
-
-        <div class="date-header">21-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၈</span><span class="donor-name">ကိုထင်အောင်လင်း + Dr. နန်းနေခြည်ဦး သမီး နန်းရွှေရုပ် ၊ နန်းရွှေမုံ မိသားစု မန္တလေးမြို့ (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၉</span><span class="donor-name">ဦးဝေဇင်ထွန်း + ဒေါ်ဖြိုးဖြိုးဆွေ စတားမုန့်တိုက်မိသားစု မြင်းခြံမြို့ (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၀</span><span class="donor-name">ကိုခိုင်လင်းထွန်း + မခင်ကြည်ပြာ မောင်ခိုင်ကွန်ပျူတာ မြင်းခြံမြို့ (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၁</span><span class="donor-name">ကိုကျော်ထွန်း + မဒါလီစိန်ဝင်း မန္တလေးမြို့ (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၂</span><span class="donor-name">ကိုဇာနည်ဦး + မခင်မိုးနွယ် စင်္ကာပူ (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၃</span><span class="donor-name">မိဘများကို အမှူးထားပြီး မနှင်းနှင်းအောင် မိသားစုကောင်းမှု (Kpay)</span></div><div class="donor-amount" data-value="25000">25,000/-</div></div>
-        </div>
-
-        <div class="date-header">22-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၄</span><span class="donor-name">မအင်ကြင်းလှမြင့် (ထပ်တိုးအလှူ) (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-        </div>
-
-        <div class="date-header">23-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၅</span><span class="donor-name">ဦးကျင်စိန် + ဒေါ်ခင်စန်း မိသားစု (Cash)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၆</span><span class="donor-name">ဦးသိန်းဇော် + ဒေါ်စပယ် မိသားစု ထပ်တိုးအလှူ (Cash)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၇</span><span class="donor-name">ဒေါ်စန်းမြင့် မိသားစု လက်ပံလှခါးရွာ နေပြည်တော် (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-        </div>
-
-        <div class="date-header">24-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၈</span><span class="donor-name">ဦးဝင်းလှိုင် + ဒေါ်တင်တင်အေး သား မြတ်သူကို ၊ သမီး မြတ်ရတနာလှိုင် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-        </div>
-
-        <div class="total-box" id="kathin-total">ကထိန်အလှူငွေစုစုပေါင်း - 0/- ကျပ်</div>
+    <!-- Tab Buttons -->
+    <div class="tab-buttons">
+        <button class="tab-btn active-flood" id="btn-flood" onclick="switchTab('flood')">၁။ ရေဘေးနှင့် ခရီးစရိတ် အလှူ</button>
+        <button class="tab-btn" id="btn-kathina" onclick="switchTab('kathina')">၂။ စုပေါင်းမဟာဘုံကထိန် အလှူ</button>
     </div>
 
-    <!-- ရေဘေး Tab -->
-    <div id="flood" class="tab-content">
-        <div class="section-title">ထားဝယ်မြို့နယ်ရှိ သာမဏေမိဘများတွေ့ဆုံရန် ခရီးစရိတ် နှင့် ရေဘေးအလှူ</div>
-
-        <div class="date-header">3-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁</span><span class="donor-name">မအင်ကြင်းလှမြင့် မိသားစုအလှူ (Kpay)</span></div><div class="donor-amount" data-value="1000000">1,000,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂</span><span class="donor-name">မနန်းဟေမာန်ဆောင်း မိသားစု အလှူ (Kpay)</span></div><div class="donor-amount" data-value="1000000">1,000,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃</span><span class="donor-name">ဒေါ်ကျော့ကျော့ခိုင် (Kpay)</span></div><div class="donor-amount" data-value="200000">200,000/-</div></div>
+    <!-- ==================== TAB 1: FLOOD ==================== -->
+    <div id="tab-flood" class="tab-content active">
+        <div class="main-header header-flood">
+            <h1>ထားဝယ်မြို့နယ်ရှိ သာမဏေမိဘများတွေ့ဆုံရန် ခရီးစရိတ် နှင့် ရေဘေးအလှူ</h1>
         </div>
 
-        <div class="date-header">5-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄</span><span class="donor-name">ကိုသန်းဇော်ဦး + မမြင့်ကေခိုင် မိသားစု (Cash)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၅</span><span class="donor-name">ကိုကျော်စွာ + မတင်တင်နွယ် မိသားစု နေပြည်တော် (Kpay)</span></div><div class="donor-amount" data-value="300000">300,000/-</div></div>
+        <div class="image-container">
+            <img src="https://i.ibb.co/HDDmJFLg/IMG-20261029-021451.png" alt="ရေဘေးအလှူမှတ်တမ်းဓာတ်ပုံ" loading="lazy">
         </div>
 
-        <div class="date-header">8-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၆</span><span class="donor-name">ကိုထွန်းဝေ + မမေလွင်သော် ထွန်းပြည်လျှံ ကုမ္ပဏီ (Kpay)</span></div><div class="donor-amount" data-value="300000">300,000/-</div></div>
+        <div class="donor-list-container">
+            <div class="date-section">
+                <div class="date-title date-title-flood">3-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၁ - မအင်ကြင်းလှမြင့် မိသားစုအလှူ <span class="payment-subtext">Kpay</span></span><span class="donor-amount">1,000,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၂ - မနန်းဟေမာန်ဆောင်း မိသားစု အလှူ <span class="payment-subtext">Kpay</span></span><span class="donor-amount">1,000,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၃ - ဒေါ်ကျော့ကျော့ခိုင် <span class="payment-subtext">Kpay</span></span><span class="donor-amount">200,000/-</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-flood">5-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၄ - ကိုသန်းဇော်ဦး + မမြင့်ကေခိုင် မိသားစု <span class="payment-subtext">Cash</span></span><span class="donor-amount">50,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၅ - ကိုကျော်စွာ + မတင်တင်နွယ် မိသားစု နေပြည်တော် <span class="payment-subtext">Kpay</span></span><span class="donor-amount">300,000/-</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-flood">8-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၆ - ကိုထွန်းဝေ+မမေလွင်သော် ထွန်းပြည်လျှံ ကုမ္ပဏီ <span class="payment-subtext">Kpay</span></span><span class="donor-amount">300,000/-</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-flood">9-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၇ - ထူးလင်းယံမိသားစု စမ်းချောင်း <span class="payment-subtext">Kpay</span></span><span class="donor-amount">200,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၈ - ဒေါ်ယုယုခိုင် ၊ မအိမ့်ကြည်စင် မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">50,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၉ - ကိုလွှမ်းမိုးအောင် + မနော်မူး <span class="payment-subtext">Kpay</span></span><span class="donor-amount">100,000/-</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-flood">10-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၁၀ - မနှင်းလဲ့ထွန်း <span class="payment-subtext">Kpay</span></span><span class="donor-amount">500,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၁၁ - မနန်းသီရိဦး မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">100,000/-</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-flood">11-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၁၂ - (ဦးအောင်ဆန်းဝင်း)+ဒေါ်ဆန်းယုမော် သား နေမင်းကို၊ ညီလမင်း ၊ကြယ်မင်းမြတ်မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">30,000/-</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-flood">12-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၁၃ - ကိုကျော်စွာ + မတင်တင်နွယ် မိသားစု နေပြည်တော်(ထပ်တိုးအလှူ) <span class="payment-subtext">Kpay</span></span><span class="donor-amount">200,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၁၄ - မသိမ့်သဥ္ဇာစိုး <span class="payment-subtext">Kpay</span></span><span class="donor-amount">200,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၁၅ - ဦးသန်းဇော်+ ဒေါ်ခင်ပြုံးရည် သားအောင်ကောင်းမြတ်၊ သမီး မဆုရွှေရည်ဝင်း မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">100,000/-</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-flood">13-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၁၆ - ဒေါ်ကလျာအောင် <span class="payment-subtext">Kpay</span></span><span class="donor-amount">100,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၁၇ - ဒေါ်နုနုခိုင်နှင့်သမီးမကျော့ <span class="payment-subtext">Kpay</span></span><span class="donor-amount">50,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၁၈ - မချောစုလှိုင် မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">30,000/-</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-flood">15-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၁၉ - ကိုသန့်ဇော်လင်း + မဝေမာ မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">100,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၂၀ - ဒေါ်ကျော့ကျော့ခိုင်(ထပ်တိုးအလှူ) <span class="payment-subtext">Kpay</span></span><span class="donor-amount">200,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၂၁ - ကိုထွန်းဝေ+မမေလွင်သော် ထွန်းပြည့်လျှံဆောက်လုပ်ရေး ကုမ္ပဏီ (ထပ်တိုးအလှူ)</span><span class="donor-amount">300,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၂၂ - မသဥ္ဇာဝင်း မိသားစု ပုလောမြို့နယ် <span class="payment-subtext">Kpay</span></span><span class="donor-amount">50,000/-</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-flood">16-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၂၃ - ဦးကျော်စွာလင်း+ဒေါ်ပပဝင်း သား မောင်လင်းပြည့်ရဲရင့်၊ သမီး မခင်လင်းရတနာသွယ်၊ သမီး မထက်ရတီလင်း မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">100,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၂၄ - ဦးအောင်ချိုထက် (UK) <span class="payment-subtext">Kpay</span></span><span class="donor-amount">1,000,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၂၅ - ဦးခင်မောင်ဌေး+‌ဒေါ်အေးမြတ်မွန် သမီးသစ္စာရည်မွန်ဌေးမိသားစု(UK) <span class="payment-subtext">Kpay</span></span><span class="donor-amount">100,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၂၆ - ဦးမင်းခိုင်+ဒေါ်ချိုသက်ရီ သားမောင်ထက်အောင်လင်းမိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">50,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၂၇ - ကွယ်လွန်သူမိဘနှစ်ပါးဦးခင်မောင်ဘို + ဒေါ်မြမြချစ်တို့အားရည်စူး၍သမီးမြဝတ်ရည်ဘို <span class="payment-subtext">Kpay</span></span><span class="donor-amount">50,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၂၈ - မကေသွယ်ခိုင် မွေးနေ့အလှူ <span class="payment-subtext">Kpay</span></span><span class="donor-amount">300,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၂၉ - မအေးမို့မို့ဝင်း <span class="payment-subtext">Kpay</span></span><span class="donor-amount">50,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၃၀ - ဒေါ်နုနုခိုင်နှင့်သမီး မကျော့ မိသားစု (ထပ်တိုးအလှူ) <span class="payment-subtext">Kpay</span></span><span class="donor-amount">100,000/-</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-flood">17-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၃၁ - ဦးသော်ထိုက်+ဒေါ်နန်းလျှို <span class="payment-subtext">Kpay</span></span><span class="donor-amount">200,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၃၂ - ဒေါ်ကိန်းလန် (ခ) ဒေါ်လျိုစီမင်း <span class="payment-subtext">Kpay</span></span><span class="donor-amount">500,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၃၃ - ဦးဝင်းမောင် +ဒေါ်ခင်အေးမိသားစု၊ပျဥ်းမနားမြို့ <span class="payment-subtext">Kpay</span></span><span class="donor-amount">150,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၃၄ - ဦးညွန့်ဝင်း+ဒေါ်ရီ မိသားစု ပျဥ်းမနား မြို့ <span class="payment-subtext">Kpay</span></span><span class="donor-amount">20,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၃၅ - ဦးရွှေကို + ဒေါ်သီတာဝင်း မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">100,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၃၆ - ဒေါ်မြမြမိုး မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">20,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၃၇ - ဒေါ်ချိုချိုအောင် နှင့်တူလေးမောင်ခိုင်လင်းစိုး <span class="payment-subtext">Kpay</span></span><span class="donor-amount">100,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၃၈ - မိဘများအမှူးထား၍ ကိုဇော်လင်း+မအိအိလွင် မိသားစု</span><span class="donor-amount">100,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၃၉ - ဒေါ်အေးကြည်သာ မိသားစု</span><span class="donor-amount">10,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၄၀ - ကိုအာနိုး + မဖူးဖူး မိသားစု</span><span class="donor-amount">500,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၄၁ - ဒေါ်သန်းသန်း ၊ ဒေါ်ဌေးဌေးမြင့် မိသားစု</span><span class="donor-amount">50,000/-</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-flood">18-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၄၂ - ဦးထင်ကျော်ဝင့် + ဒေါ်ရီမွန်အောင် မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">100,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၄၃ - ဦးဝင်းကို + ဒေါ်ဝါဝါခိုင်မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">30,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၄၄ - ကိုခိုင်ထူး + မမေအင်ကြင်းသူ သားထူးဇေယျာအောင် ၊ သမီးထူးမြတ်သဒ္ဒါ မိသားစု <span class="payment-subtext">AYA Mbanking</span></span><span class="donor-amount">1,010,000/-</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-flood">19-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၄၅ - ဒေါ်ခင်ထွေးဇင် မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">50,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၄၆ - ဒေါ်မီမီအောင် ၊ ဒေါ်ခင်ယုအောင် မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">50,000/-</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-flood">21-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၄၇ - ဒေါ်စန်းကြည် (ခ) ဒေါ်မို့မို့ <span class="payment-subtext">Kpay</span></span><span class="donor-amount">50,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၄၈ - မိဘများကို အမှူးထားပြီး မနှင်းနှင်းအောင် မိသားစုကောင်းမှု့ <span class="payment-subtext">Kpay</span></span><span class="donor-amount">25,000/-</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-flood">22-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၄၉ - မချို မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">30,000/-</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-flood">23-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၅၀ - မဝေမွန်သက် မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">100,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၅၁ - မဧပရယ်ဌေး မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">30,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၅၂ - ကိုခိုင်ထူး + မမေအင်ကြင်းသူ သား ထူးဇေယျာအောင် သမီး ထူးမြတ်သဒ္ဒါ မိသားစု (ထပ်တိုးအလှူ)</span><span class="donor-amount">1,000,000/-</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-flood">24-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၅၃ - ဦးစန်းလှိုင် + ဒေါ်ရွှေဖြူနွယ် စွယ်တော် မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount">300,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၅၄ - SNF ပြင်ပသာသနာပြု အဖွဲ့မှ လှူဒါန်းငွေ</span><span class="donor-amount">265,000/-</span></li>
+                </ul>
+            </div>
         </div>
 
-        <div class="date-header">9-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၇</span><span class="donor-name">ထူးလင်းယံမိသားစု စမ်းချောင်း (Kpay)</span></div><div class="donor-amount" data-value="200000">200,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၈</span><span class="donor-name">ဒေါ်ယုယုခိုင်၊ မအိမ့်ကြည်စင် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၉</span><span class="donor-name">ကိုလွှမ်းမိုးအောင် + မနော်မူး (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
+        <div class="total-box total-flood">
+            စုစုပေါင်း အလှူငွေ = <span class="total-amount">၁၁,၇၀၀,၀၀၀/-</span> ကျပ်
         </div>
 
-        <div class="date-header">10-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၀</span><span class="donor-name">မနှင်းလဲ့ထွန်း (Kpay)</span></div><div class="donor-amount" data-value="500000">500,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၁</span><span class="donor-name">မနန်းသီရိဦး မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
+        <div class="blessing-box">
+            ထားဝယ်မြို့နယ်ရှိ သာမဏေမိဘများ တွေ့ဆုံရန် ခရီးစရိတ်နှင့် ရေဘေးအလှူအတွက် စုစုပေါင်းအလှူငွေ ကျပ် <b>၁၁,၇၀၀,၀၀၀/- (ကျပ်တစ်ရာတစ်ဆယ့်ခုနစ်သိန်းတိတိ)</b> ကို ကုသိုလ်ရှင်အပေါင်းတို့နှင့်အတူ SNF YGN သာသနာပြုအဖွဲ့မှ အောင်မြင်စွာ လှူဒါန်းနိုင်ခဲ့ပါပြီ[cite: 2]။<br><br>
+            <b>နတ်လူသာဓုခေါ်စေသော်</b>
         </div>
-
-        <div class="date-header">11-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၂</span><span class="donor-name">(ဦးအောင်ဆန်းဝင်း) + ဒေါ်ဆန်းယုမော် သား နေမင်းကို၊ ညီလမင်း၊ ကြယ်မင်းမြတ် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="30000">30,000/-</div></div>
-        </div>
-
-        <div class="date-header">12-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၃</span><span class="donor-name">ကိုကျော်စွာ + မတင်တင်နွယ် မိသားစု နေပြည်တော် (ထပ်တိုးအလှူ) (Kpay)</span></div><div class="donor-amount" data-value="200000">200,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၄</span><span class="donor-name">မသိမ့်သဥ္စာစိုး (Kpay)</span></div><div class="donor-amount" data-value="200000">200,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၅</span><span class="donor-name">ဦးသန်းဇော် + ဒေါ်ခင်ပြုံးရည် သားအောင်ကောင်းမြတ်၊ သမီး မဆုရွှေရည်ဝင်း မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-        </div>
-
-        <div class="date-header">13-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၆</span><span class="donor-name">ဒေါ်ကလျာအောင် (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၇</span><span class="donor-name">ဒေါ်နုနုခိုင်နှင့်သမီးမကျော့ (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၈</span><span class="donor-name">မချောစုလှိုင် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="30000">30,000/-</div></div>
-        </div>
-
-        <div class="date-header">15-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၁၉</span><span class="donor-name">ကိုသန့်ဇော်လင်း + မဝေမာ မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၀</span><span class="donor-name">ဒေါ်ကျော့ကျော့ခိုင် (ထပ်တိုးအလှူ) (Kpay)</span></div><div class="donor-amount" data-value="200000">200,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၁</span><span class="donor-name">ကိုထွန်းဝေ + မမေလွင်သော် ထွန်းပြည့်လျှံဆောက်လုပ်ရေး ကုမ္ပဏီ (ထပ်တိုးအလှူ)</span></div><div class="donor-amount" data-value="300000">300,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၂</span><span class="donor-name">မသဥ္စာဝင်း မိသားစု ပုလောမြို့နယ် (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-        </div>
-
-        <div class="date-header">16-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၃</span><span class="donor-name">ဦးကျော်စွာလင်း + ဒေါ်ပပဝင်း သား မောင်လင်းပြည့်ရဲရင့်၊ သမီး မခင်လင်းရတနာသွယ်၊ သမီး မထက်ရတီလင်း မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၄</span><span class="donor-name">ဦးအောင်ချိုထက် (UK) (Kpay)</span></div><div class="donor-amount" data-value="1000000">1,000,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၅</span><span class="donor-name">ဦးခင်မောင်ဌေး + ဒေါ်အေးမြတ်မွန် သမီး သစ္စာရည်မွန်ဌေး မိသားစု (UK) (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၆</span><span class="donor-name">ဦးမင်းခိုင် + ဒေါ်ချိုသက်ရီ သား မောင်ထက်အောင်လင်း မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၇</span><span class="donor-name">ကွယ်လွန်သူ မိဘနှစ်ပါး ဦးခင်မောင်ဘို + ဒေါ်မြမြချစ် တို့အားရည်စူး၍ သမီး မြဝတ်ရည်ဘို (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၈</span><span class="donor-name">မကေသွယ်ခိုင် မွေးနေ့အလှူ (Kpay)</span></div><div class="donor-amount" data-value="300000">300,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၂၉</span><span class="donor-name">မအေးမို့မို့ဝင်း (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၀</span><span class="donor-name">ဒေါ်နုနုခိုင်နှင့်သမီး မကျော့ မိသားစု (ထပ်တိုးအလှူ) (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-        </div>
-
-        <div class="date-header">17-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၁</span><span class="donor-name">ဦးသော်ထိုက် + ဒေါ်နန်းလျှို (Kpay)</span></div><div class="donor-amount" data-value="200000">200,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၂</span><span class="donor-name">ဒေါ်ကိန်းလန် (ခ) ဒေါ်လျိုစီမင်း (Kpay)</span></div><div class="donor-amount" data-value="500000">500,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၃</span><span class="donor-name">ဦးဝင်းမောင် + ဒေါ်ခင်အေး မိသားစု၊ ပျဉ်းမနားမြို့ (Kpay)</span></div><div class="donor-amount" data-value="150000">150,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၄</span><span class="donor-name">ဦးညွန့်ဝင်း + ဒေါ်ရီ မိသားစု၊ ပျဉ်းမနားမြို့ (Kpay)</span></div><div class="donor-amount" data-value="20000">20,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၅</span><span class="donor-name">ဦးရွှေကို + ဒေါ်သီတာဝင်း မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၆</span><span class="donor-name">ဒေါ်မြမြမိုး မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="20000">20,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၇</span><span class="donor-name">ဒေါ်ချိုချိုအောင် နှင့် တူလေး မောင်ခိုင်လင်းစိုး (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၈</span><span class="donor-name">မိဘများအမှူးထား၍ ကိုဇော်လင်း + မအိအိလွင် မိသားစု</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၃၉</span><span class="donor-name">ဒေါ်အေးကြည်သာ မိသားစု</span></div><div class="donor-amount" data-value="10000">10,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၀</span><span class="donor-name">ကိုအာနိုး + မဖူးဖူး မိသားစု</span></div><div class="donor-amount" data-value="500000">500,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၁</span><span class="donor-name">ဒေါ်သန်းသန်း ၊ ဒေါ်ဌေးဌေးမြင့် မိသားစု</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-        </div>
-
-        <div class="date-header">18-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၂</span><span class="donor-name">ဦးထင်ကျော်ဝင့် + ဒေါ်ရီမွန်အောင် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၃</span><span class="donor-name">ဦးဝင်းကို + ဒေါ်ဝါဝါခိုင် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="30000">30,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၄</span><span class="donor-name">ကိုခိုင်ထူး + မမေအင်ကြင်းသူ မိသားစု (AYA Mbanking)</span></div><div class="donor-amount" data-value="1010000">1,010,000/-</div></div>
-        </div>
-
-        <div class="date-header">19-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၅</span><span class="donor-name">ဒေါ်ခင်ထွေးဇင် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၆</span><span class="donor-name">ဒေါ်မီမီအောင် ၊ ဒေါ်ခင်ယုအောင် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-        </div>
-
-        <div class="date-header">21-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၇</span><span class="donor-name">ဒေါ်စန်းကြည် (ခ) ဒေါ်မို့မို့ (Kpay)</span></div><div class="donor-amount" data-value="50000">50,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၈</span><span class="donor-name">မိဘများကို အမှူးထားပြီး မနှင်းနှင်းအောင် မိသားစုကောင်းမှု (Kpay)</span></div><div class="donor-amount" data-value="25000">25,000/-</div></div>
-        </div>
-
-        <div class="date-header">22-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၄၉</span><span class="donor-name">မချို မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="30000">30,000/-</div></div>
-        </div>
-
-        <div class="date-header">23-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၅၀</span><span class="donor-name">မဝေမွန်သက် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="100000">100,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၅၁</span><span class="donor-name">မဧပရယ်ဌေး မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="30000">30,000/-</div></div>
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၅၂</span><span class="donor-name">ကိုခိုင်ထူး + မမေအင်ကြင်းသူ သား ထူးဇေယျာအောင် ၊ သမီး ထူးမြတ်သဒ္ဒါ မိသားစု (ထပ်တိုးအလှူ) (Kpay + Cash)</span></div><div class="donor-amount" data-value="1000000">1,000,000/-</div></div>
-        </div>
-
-        <div class="date-header">24-10-2026</div>
-        <div class="donor-list">
-            <div class="donor-card"><div class="donor-info"><span class="donor-no">၅၃</span><span class="donor-name">ဦးစန်းလှိုင် + ဒေါ်ရွှေဖြူနွယ် စွယ်တော် မိသားစု (Kpay)</span></div><div class="donor-amount" data-value="300000">300,000/-</div></div>
-        </div>
-
-        <div class="total-box" id="flood-total">ရေဘေးအလှူငွေစုစုပေါင်း - 0/- ကျပ်</div>
     </div>
 
+    <!-- ==================== TAB 2: KATHINA ==================== -->
+    <div id="tab-kathina" class="tab-content">
+        <div class="main-header header-kathina">
+            <h1>၂၀၂၆ ခုနှစ် ပဲခူး ကျိုက်ဒေးကစီကျောင်းတိုက် စုပေါင်းမဟာဘုံကထိန်ပွဲအလှူ</h1>
+        </div>
+
+        <div class="donor-list-container">
+            <div class="date-section">
+                <div class="date-title date-title-kathina">27-9-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၁ - ကိုကျော်စွာ + မတင်တင်နွယ် မိသားစု- နေပြည်တော် <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၂ - ကိုသန့်ဇော်လင်း + မဝေမာ သားမောင်သက်ပိုင်လင်း၊ သမီး မစံယွန်းမေ မိသားစု- ရန်ကုန်မြို့ <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၃ - မသိမ့်သဥ္ဇာစိုး <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၄ - မကေသွယ်ခိုင် <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">110000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">28-9-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၅ - ဒေါ်စုစုအောင် (သိန်းသုံးဆယ်) <span class="payment-subtext">KBZ Mobile Banking</span></span><span class="donor-amount amount-kathina">3000000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">30-9-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၆ - ကိုစခိုင်မင်းဦး+မဖြူဖြူဝင်း၊သမီးမဖြူဖြူခိုင်မင်း၊သားမောင်လရောင်လင်း မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">40000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">1-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၇ - မိခင်ကြီးဒေါ်သန်းအားအမှူးထား၍ မစိန်စိန်မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၈ - ဒေါ်မို့မို့ <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">50000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၉ - မအင်ကြင်းလှမြင့် <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">300000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">2-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၁၀ - ထူးလင်းယံ မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">300000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">4-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၁၁ - မဧပရယ်ဌေး <span class="payment-subtext">Cash</span></span><span class="donor-amount amount-kathina">50000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၁၂ - မကျော့ကျော့ခိုင် <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">5-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၁၃ - ကိုသန်းဇော်ဦး + မမြင့်ကေခိုင်မိသားစု <span class="payment-subtext">Cash</span></span><span class="donor-amount amount-kathina">50000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၁၄ - မချောစုလှိုင် <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">20000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၁၅ - မမြမြမိုး <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">30000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၁၆ - မသီသီလှိုင် <span class="payment-subtext">Cash</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၁၇ - ဦးတင်အေး မိသားစု <span class="payment-subtext">Cash</span></span><span class="donor-amount amount-kathina">20000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၁၈ - ဒေါ်မြင့်မြင့်ဝေ၊ ဒေါ်လှလှဝင်း မိသားစု မြစ်ကြီးနားမြို့ (ယောဂီဟောင်း) <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">6-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၁၉ - မယမင်းဖြိုးအိ <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">30000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၂၀ - မဆွေဆွေမြင့် <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">8-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၂၁ - ကိုထွန်းဝေ+မမေလွင်သော် ထွန်းပြည်လျှံ ကုမ္ပဏီ <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">300000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">9-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၂၂ - ဒေါ်ချိုချိုအောင် ၊ ဒေါ်မီမီအောင် မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">50000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၂၃ - ဒေါ်ယုယုခိုင်၊ မအိမ့်ကြည်စင် မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">50000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၂၄ - ကိုလွမ်းမိုးအောင် + မနော်မူး <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">10-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၂၅ - မနန်းသီရိဦး မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၂၆ - မနှင်းလဲ့ထွန်းမိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">500000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">11-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၂၇ - (ဦးအောင်ဆန်းဝင်း)+ဒေါ်စန်းယုမော် သား နေမင်းကို ၊ညီလမင်း ၊ ကြယ်မင်းမြတ် မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">30000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">12-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၂၈ - ဖခင်နှင့်မိခင်တို့အား ရည်စူး၍ ဦးသန်းဇော်+ ဒေါ်ခင်ပြုံးရည် သားအောင်ကောင်းမြတ်၊ သမီး မဆုရွှေရည်ဝင်း မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">500000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">13-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၂၉ - ဒေါ်ကလျာအောင် <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">15-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၃၀ - မသဥ္ဇာဝင်း မိသားစု ပုလောမြို့နယ် <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">50000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">17-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၃၁ - ဦးဝင်းမောင် +ဒေါ်ခင်အေးမိသားစု၊ ပျဉ်းမနားမြို့ <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">50000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၃၂ - ဦးညွန့်ဝင်း+ဒေါ်ရီမိသားစု ပျဉ်းမနားမြို့ <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">15000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၃၃ - ဦးရွှေကို + ဒေါ်သီတာဝင်း မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">300000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၃၄ - ဒေါ်တင်တင်အေး မိသားစု</span><span class="donor-amount amount-kathina">50000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၃၅ - ဒေါ်မိုးသူဇာ မိသားစု</span><span class="donor-amount amount-kathina">10000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">18-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၃၆ - ဦးဝင်းကို+ ဒေါ်ဝါဝါခိုင်မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">30000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">19-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၃၇ - ဒေါ်ခင်ထွေးဇင် မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">50000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">21-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၃၈ - ကိုထင်အောင်လင်း + Dr. နန်းနေခြည်ဦး သမီး နန်းရွှေရုပ် ၊ နန်းရွှေမုံ မိသားစု မန္တလေးမြို့ <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၃၉ - ဦးဝေဇင်ထွန်း+ဒေါ်ဖြိုးဖြိုးဆွေ စတားမုန့်တိုက်မိသားစု မြင်းခြံမြို့ <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၄၀ - ကိုခိုင်လင်းထွန်း+မခင်ကြည်ပြာ မောင်ခိုင်ကွန်ပျုတာ မြင်းခြံမြို့ <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">50000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၄၁ - ကိုကျော်ထွန်း+မဒါလီစိန်ဝင်း မန္တလေးမြို့ <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၄၂ - ကိုဇာနည်ဦး+မခင်မိုးနွယ် စင်္ကာပူ <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၄၃ - မိဘများကို အမှူးထားပြီး မနှင်းနှင်းအောင် မိသားစုကောင်းမှု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">25000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">22-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၄၄ - မအင်ကြင်းလှမြင့် (ထပ်တိုးအလှူ) <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">50000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">23-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၄၅ - ဦးကျင်စိန် + ဒေါ်ခင်စန်း မိသားစု <span class="payment-subtext">Cash</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၄၆ - ဦးသိန်းဇော် + ဒေါ်စပယ် မိသားစု ထပ်တိုးအလှူ <span class="payment-subtext">Cash</span></span><span class="donor-amount amount-kathina">50000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၄၇ - ဒေါ်စန်းမြင့် မိသားစု လက်ပံလှခါးရွာ နေပြည်တော် <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">50000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">24-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၄၈ - ဦးဝင်းလှိုင် + ဒေါ်တင်တင်အေး သား မြတ်သူကို ၊ သမီး မြတ်ရတနာလှိုင် မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">27-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၄၉ - YG0672ဦးသန်းဇော်ထွေး+YG0689ဒေါ်စုစုစံ မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                </ul>
+            </div>
+
+            <div class="date-section">
+                <div class="date-title date-title-kathina">28-10-2026</div>
+                <ul class="donor-list">
+                    <li class="donor-item"><span class="donor-name-col">၅၀ - မိဘများအား ရည်စူးအမှူးထား၍ ကိုဟိန်းသွင် ၊ ကိုသူရိန်စိုး မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100000</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၅၁ - ကွယ်လွန်သူဘိုးဘွားများနှင့်ဖခင်ဦးအောင်မြင့်၊မိခင်ဒေါ်ရီရီဝင်းအားရည်စူး၍ သမီးYG0549ယုဇနအောင်မြင့်၊သားအောင်အောင် <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">20000</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="total-box total-kathina">
+            စုစုပေါင်း အလှူငွေ = <span class="total-amount" id="kathinaTotal">0/-</span>
+        </div>
+    </div>
 </div>
 
 <script>
-    function switchTab(tabId) {
-        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-        
-        document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
+    // Tab Switching Function
+    function switchTab(tabName) {
+        document.getElementById('tab-flood').classList.remove('active');
+        document.getElementById('tab-kathina').classList.remove('active');
+        document.getElementById('btn-flood').className = 'tab-btn';
+        document.getElementById('btn-kathina').className = 'tab-btn';
+
+        if (tabName === 'flood') {
+            document.getElementById('tab-flood').classList.add('active');
+            document.getElementById('btn-flood').classList.add('active-flood');
+        } else {
+            document.getElementById('tab-kathina').classList.add('active');
+            document.getElementById('btn-kathina').classList.add('active-kathina');
+        }
     }
 
-    function calculateTotals() {
-        // Calculate Kathin Total strictly within #kathin section
-        let kathinSum = 0;
-        document.querySelectorAll('#kathin .donor-amount').forEach(el => {
-            kathinSum += Number(el.getAttribute('data-value')) || 0;
-        });
-        document.getElementById('kathin-total').innerText = `ကထိန်အလှူငွေစုစုပေါင်း - ${kathinSum.toLocaleString()} ကျပ်`;
+    // Auto Sum for Kathina Tab
+    window.onload = function() {
+        let amountCells = document.querySelectorAll('.amount-kathina');
+        let total = 0;
 
-        // Calculate Flood Total strictly within #flood section
-        let floodSum = 0;
-        document.querySelectorAll('#flood .donor-amount').forEach(el => {
-            floodSum += Number(el.getAttribute('data-value')) || 0;
+        amountCells.forEach(cell => {
+            let val = parseInt(cell.innerText.replace(/,/g, '').replace('/-', '')) || 0;
+            total += val;
         });
-        document.getElementById('flood-total').innerText = `ရေဘေးအလှူငွေစုစုပေါင်း - ${floodSum.toLocaleString()} ကျပ်`;
-    }
 
-    // Run calculation on page load
-    window.onload = calculateTotals;
+        document.getElementById('kathinaTotal').innerText = total.toLocaleString() + '/- ကျပ်';
+    };
 </script>
 
 </body>
