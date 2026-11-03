@@ -723,6 +723,7 @@
                <li class="donor-item"><span class="donor-name-col">၅၇ - ဒေါ်နီနီလွင် မိသားစု<span class="payment-subtext">Cash</span></span><span class="donor-amount amount-kathina">20,000/-</span></li>
 
 <li class="donor-item"><span class="donor-name-col">၅၈ - -ဦးသန်းလွင်+ဒေါ်သီတာလင်း သားမောင်ပြည့်စုံဦး မောင်ဘုန်းမြတ်သူ မိသားစု<span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">200,000/-</span></li>
+<li class="donor-item"><span class="donor-name-col">၅၉ - SNF သာသနာပြုအဖွဲ့<span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">800,000/-</span></li>
  </ul>
             </div>
         </div>
@@ -730,7 +731,13 @@
         <div class="total-box total-kathina">
             စုစုပေါင်း အလှူငွေ = <span class="total-amount" id="kathinaTotal">0/-</span>
         </div>
+    <div class="blessing-box">
+            2-11-2026<br>
+၂၀၂၆ခုနှစ် ပဲခူး ကျိုက်ဒေးကစီကျောင်းတိုက် စုပေါင်းမဟာဘုံကထိန်ပွဲအလှူ ငွေ <b>၁၀,၀၀၀,၀၀၀/- (ကျပ်သိန်းတစ်ရာတိတိ)</b> ကို ကုသိုလ်ရှင်အပေါင်းတို့နှင့်အတူ SNF YGN သာသနာပြုအဖွဲ့မှ အောင်မြင်စွာ လှူဒါန်းနိုင်ခဲ့ပါပြီ။<br><br>
+            <b>နတ်လူသာဓုခေါ်စေသော်</b>
+        </div>
     </div>
+
 </div>
 
 <script>
@@ -779,8 +786,8 @@
     }
 
     // Auto Sum for Kathina Tab
-    window.onload = function() {
-        let amountCells = document.querySelectorAll('.amount-kathina');
+    document.addEventListener('DOMContentLoaded', function() {
+        const amountCells = document.querySelectorAll('.amount-kathina');
         let total = 0;
 
         amountCells.forEach(cell => {
@@ -788,8 +795,11 @@
             total += val;
         });
 
-        document.getElementById('kathinaTotal').innerText = total.toLocaleString() + '/- ကျပ်';
-    };
+        const totalElement = document.getElementById('kathinaTotal');
+        if (totalElement) {
+            totalElement.innerText = total.toLocaleString() + '/- ကျပ်';
+        }
+    });
 </script>
 
 </body>
