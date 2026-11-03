@@ -131,14 +131,14 @@
             border: 1px solid var(--border-color);
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        .slide {
+        .slide-flood, .slide-kathina {
             display: none;
             text-align: center;
         }
-        .slide.active-slide {
+        .slide-flood.active-slide, .slide-kathina.active-slide {
             display: block;
         }
-        .slide img {
+        .slider-container img {
             width: 100%;
             max-height: 400px;
             object-fit: contain;
@@ -170,7 +170,7 @@
             background: #f8fafc;
             border-top: 1px solid var(--border-color);
         }
-        .dot {
+        .dot-flood, .dot-kathina {
             display: inline-block;
             width: 10px;
             height: 10px;
@@ -180,8 +180,11 @@
             cursor: pointer;
             transition: background 0.3s;
         }
-        .dot.active-dot {
+        .dot-flood.active-dot {
             background-color: var(--primary-blue);
+        }
+        .dot-kathina.active-dot {
+            background-color: var(--primary-red);
         }
 
         /* Date Section & Donor Items */
@@ -283,7 +286,7 @@
             .tab-btn { font-size: 0.85rem; padding: 10px 4px; }
             .main-header h1 { font-size: 1.1rem; }
             .donor-item { font-size: 0.88rem; padding: 8px 4px; }
-            .slide img { max-height: 280px; }
+            .slider-container img { max-height: 280px; }
         }
     </style>
 </head>
@@ -308,31 +311,31 @@
 
         <!-- Image Slider / Carousel Container -->
         <div class="slider-container">
-            <div class="slide active-slide">
+            <div class="slide-flood active-slide">
                 <img src="flood1.jpg" alt="မှတ်တမ်းပုံ ၁">
             </div>
-            <div class="slide">
+            <div class="slide-flood">
                 <img src="flood2.jpg" alt="မှတ်တမ်းပုံ ၂">
             </div>
-            <div class="slide">
+            <div class="slide-flood">
                 <img src="flood3.jpg" alt="မှတ်တမ်းပုံ ၃">
             </div>
-            <div class="slide">
+            <div class="slide-flood">
                 <img src="flood4.jpg" alt="မှတ်တမ်းပုံ ၄">
             </div>
-            <div class="slide">
+            <div class="slide-flood">
                 <img src="flood5.jpg" alt="မှတ်တမ်းပုံ ၅">
             </div>
 
-            <button class="slider-btn prev-btn" onclick="moveSlide(-1)">❮</button>
-            <button class="slider-btn next-btn" onclick="moveSlide(1)">❯</button>
+            <button class="slider-btn prev-btn" onclick="moveSlide('flood', -1)">❮</button>
+            <button class="slider-btn next-btn" onclick="moveSlide('flood', 1)">❯</button>
 
             <div class="slider-dots">
-                <span class="dot active-dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-                <span class="dot" onclick="currentSlide(5)"></span>
+                <span class="dot-flood active-dot" onclick="currentSlide('flood', 1)"></span>
+                <span class="dot-flood" onclick="currentSlide('flood', 2)"></span>
+                <span class="dot-flood" onclick="currentSlide('flood', 3)"></span>
+                <span class="dot-flood" onclick="currentSlide('flood', 4)"></span>
+                <span class="dot-flood" onclick="currentSlide('flood', 5)"></span>
             </div>
         </div>
 
@@ -508,6 +511,24 @@
     <div id="tab-kathina" class="tab-content">
         <div class="main-header header-kathina">
             <h1>၂၀၂၆ ခုနှစ် ပဲခူး ကျိုက်ဒေးကစီကျောင်းတိုက် စုပေါင်းမဟာဘုံကထိန်ပွဲအလှူ</h1>
+        </div>
+
+        <!-- Kathina Image Slider Container -->
+        <div class="slider-container">
+            <div class="slide-kathina active-slide">
+                <img src="kathina1.jpg" alt="ကထိန် မှတ်တမ်းပုံ ၁">
+            </div>
+            <div class="slide-kathina">
+                <img src="kathina2.jpg" alt="ကထိန် မှတ်တမ်းပုံ ၂">
+            </div>
+
+            <button class="slider-btn prev-btn" onclick="moveSlide('kathina', -1)">❮</button>
+            <button class="slider-btn next-btn" onclick="moveSlide('kathina', 1)">❯</button>
+
+            <div class="slider-dots">
+                <span class="dot-kathina active-dot" onclick="currentSlide('kathina', 1)"></span>
+                <span class="dot-kathina" onclick="currentSlide('kathina', 2)"></span>
+            </div>
         </div>
 
         <div class="donor-list-container">
@@ -713,27 +734,27 @@
                     <li class="donor-item"><span class="donor-name-col">၅၃ - ဒေါ်နန်းသန်းအေး (YG0571) မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">300,000/-</span></li>
                 </ul>
             </div>
-            
+
             <div class="date-section">
                 <div class="date-title date-title-kathina">30-10-2026</div>
                 <ul class="donor-list">
-                    <li class="donor-item"><span class="donor-name-col">၅၄ - ဒေါ်ကြည်ကြည်အေး (YG0740) မိသားစု ဥက္ကံမြို့<span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100,000/-</span></li>
-                    <li class="donor-item"><span class="donor-name-col">၅၅ - ဒေါ်ဆွေဆွေမြင့် မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100,000/-</span></li>
-<li class="donor-item"><span class="donor-name-col">၅၆ - ကိုယုလွင် + မနှင်းအိအိခိုင် သား လင်းရောင်လွင် မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">300,000/-</span></li>
-               <li class="donor-item"><span class="donor-name-col">၅၇ - ဒေါ်နီနီလွင် မိသားစု<span class="payment-subtext">Cash</span></span><span class="donor-amount amount-kathina">20,000/-</span></li>
-
-<li class="donor-item"><span class="donor-name-col">၅၈ - -ဦးသန်းလွင်+ဒေါ်သီတာလင်း သားမောင်ပြည့်စုံဦး မောင်ဘုန်းမြတ်သူ မိသားစု<span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">200,000/-</span></li>
-<li class="donor-item"><span class="donor-name-col">၅၉ - SNF သာသနာပြုအဖွဲ့<span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">800,000/-</span></li>
- </ul>
+                    <li class="donor-item"><span class="donor-name-col">၅၄ - ဒေါ်ကြည်ကြည်အေး (YG0740) မိသားစု ဥက္ကံမြို့ <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၅၅ - ဒေါ်ဆွေဆွေမြင့် မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">100,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၅၆ - ကိုယုလွင် + မနှင်းအိအိခိုင် သား လင်းရောင်လွင် မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">300,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၅၇ - ဒေါ်နီနီလွင် မိသားစု <span class="payment-subtext">Cash</span></span><span class="donor-amount amount-kathina">20,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၅၈ - ဦးသန်းလွင် + ဒေါ်သီတာလင်း သားမောင်ပြည့်စုံဦး မောင်ဘုန်းမြတ်သူ မိသားစု <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">200,000/-</span></li>
+                    <li class="donor-item"><span class="donor-name-col">၅၉ - SNF သာသနာပြုအဖွဲ့ <span class="payment-subtext">Kpay</span></span><span class="donor-amount amount-kathina">800,000/-</span></li>
+                </ul>
             </div>
         </div>
 
         <div class="total-box total-kathina">
             စုစုပေါင်း အလှူငွေ = <span class="total-amount" id="kathinaTotal">0/-</span>
         </div>
-    <div class="blessing-box">
+
+        <div class="blessing-box">
             2-11-2026<br>
-၂၀၂၆ခုနှစ် ပဲခူး ကျိုက်ဒေးကစီကျောင်းတိုက် စုပေါင်းမဟာဘုံကထိန်ပွဲအလှူ ငွေ <b>၁၀,၀၀၀,၀၀၀/- (ကျပ်သိန်းတစ်ရာတိတိ)</b> ကို ကုသိုလ်ရှင်အပေါင်းတို့နှင့်အတူ SNF YGN သာသနာပြုအဖွဲ့မှ အောင်မြင်စွာ လှူဒါန်းနိုင်ခဲ့ပါပြီ။<br><br>
+            ၂၀၂၆ခုနှစ် ပဲခူး ကျိုက်ဒေးကစီကျောင်းတိုက် စုပေါင်းမဟာဘုံကထိန်ပွဲအလှူ ငွေ <b>၁၀,၀၀၀,၀၀၀/- (ကျပ်သိန်းတစ်ရာတိတိ)</b> ကို ကုသိုလ်ရှင်အပေါင်းတို့နှင့်အတူ SNF YGN သာသနာပြုအဖွဲ့မှ အောင်မြင်စွာ လှူဒါန်းနိုင်ခဲ့ပါပြီ။<br><br>
             <b>နတ်လူသာဓုခေါ်စေသော်</b>
         </div>
     </div>
@@ -757,37 +778,50 @@
         }
     }
 
-    // Image Slider Script
-    let slideIndex = 1;
-    showSlides(slideIndex);
+    // Image Slider State Tracker
+    const slideIndices = {
+        flood: 1,
+        kathina: 1
+    };
 
-    function moveSlide(n) {
-        showSlides(slideIndex += n);
+    function moveSlide(type, n) {
+        showSlides(type, slideIndices[type] += n);
     }
 
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
+    function currentSlide(type, n) {
+        showSlides(type, slideIndices[type] = n);
     }
 
-    function showSlides(n) {
+    function showSlides(type, n) {
         let i;
-        let slides = document.getElementsByClassName("slide");
-        let dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
+        let slides = document.getElementsByClassName("slide-" + type);
+        let dots = document.getElementsByClassName("dot-" + type);
+        
+        if (slides.length === 0) return;
+
+        if (n > slides.length) { slideIndices[type] = 1; }
+        if (n < 1) { slideIndices[type] = slides.length; }
+
         for (i = 0; i < slides.length; i++) {
             slides[i].classList.remove("active-slide");
         }
         for (i = 0; i < dots.length; i++) {
             dots[i].classList.remove("active-dot");
         }
-        slides[slideIndex-1].classList.add("active-slide");
-        dots[slideIndex-1].classList.add("active-dot");
+
+        slides[slideIndices[type] - 1].classList.add("active-slide");
+        if (dots.length > 0) {
+            dots[slideIndices[type] - 1].classList.add("active-dot");
+        }
     }
 
-    // Auto Sum for Kathina Tab
-    document.addEventListener('DOMContentLoaded', function() {
-        const amountCells = document.querySelectorAll('.amount-kathina');
+    // Initialize Both Sliders and Auto Sum on Page Load
+    window.onload = function() {
+        showSlides('flood', 1);
+        showSlides('kathina', 1);
+
+        // Auto Sum for Kathina Tab
+        let amountCells = document.querySelectorAll('.amount-kathina');
         let total = 0;
 
         amountCells.forEach(cell => {
@@ -795,11 +829,11 @@
             total += val;
         });
 
-        const totalElement = document.getElementById('kathinaTotal');
+        let totalElement = document.getElementById('kathinaTotal');
         if (totalElement) {
             totalElement.innerText = total.toLocaleString() + '/- ကျပ်';
         }
-    });
+    };
 </script>
 
 </body>
